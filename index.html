@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Rohit Gerard Antony - Compliance &amp; KYC Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* CSS Variables - Dark Mode Default */
+        
+:root {
+    --color-white: #ffffff;
+    --color-background: #f9f7f3;
+    --color-surface: #ffffff;
+    --color-text: #1e2b2f;
+    --color-text-secondary: rgba(80, 90, 95, 0.85);
+    --color-primary: #025043;
+    --color-primary-hover: #01382f;
+    --color-border: rgba(120, 110, 90, 0.25);
+    --color-card-border: rgba(120, 110, 90, 0.12);
+
+    --font-family-base: "FKGroteskNeue", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-family-tagline: "Merriweather", serif;
+
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 24px;
+    --font-size-4xl: 30px;
+
+    --font-weight-medium: 500;
+    --font-weight-semibold: 550;
+    --font-weight-bold: 600;
+
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-48: 48px;
+    --space-64: 64px;
+
+    --radius-base: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+        /* Light Mode Overrides */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --color-background: rgba(252, 252, 249, 1);
+                --color-surface: rgba(255, 255, 253, 1);
+                --color-text: rgba(19, 52, 59, 1);
+                --color-text-secondary: rgba(98, 108, 113, 0.8);
+                --color-primary: rgba(4, 120, 87, 1);
+                /* DARK GREEN #047857 */
+                --color-primary-hover: rgba(3, 93, 68, 1);
+                /* Darker Green #035D44 */
+                --color-border: rgba(94, 82, 64, 0.2);
+                --color-card-border: rgba(94, 82, 64, 0.12);
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+                --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+                --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        @font-face {
+            font-family: 'FKGroteskNeue';
+            src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Profile Styling */
+        .header {
+            /* Dark Green Gradient */
+            background: linear-gradient(135deg, #e6ede5 0%, #b2d3c2 40%, #82b29a 100%);
+            color: var(--color-white);
+            padding: var(--space-64) var(--space-24) var(--space-48);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Subtly change the radial glow to green */
+            background: radial-gradient(circle at 70% 30%, rgba(4, 120, 87, 0.3) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            max-width: 768px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: var(--radius-full);
+            border: 4px solid var(--color-white);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            margin-bottom: var(--space-24);
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Profile Picture Animation Keyframes (Pop and Zoom Out) */
+        @keyframes profilePopIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Initial state for the picture */
+        .profile-pic.initial-load {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        /* Class to trigger the picture animation */
+        .profile-pic.animate {
+            animation: profilePopIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        /* Name Animation Keyframes (Descend Down) */
+        @keyframes nameDescend {
+            0% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header h1 {
+            font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-4xl));
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-8);
+            position: relative;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Initial state for the Name (h1) */
+        .header h1.initial-name-load {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        /* Class to trigger the name animation */
+        .header h1.animate-name {
+            animation: nameDescend 0.6s ease-out forwards;
+        }
+
+        .header .tagline {
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-tagline);
+            font-style: italic;
+            letter-spacing: 0.3px;
+            margin-bottom: var(--space-24);
+            padding: var(--space-24);
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Social Links - Icon Only, Center Aligned Card */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-full);
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link span {
+            display: none;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* NEW HAMBURGER MENU STYLES */
+        .nav-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 24px;
+            padding: var(--space-16);
+            cursor: pointer;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .menu-icon {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--color-white);
+            position: relative;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--color-white);
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu-icon::before {
+            top: -8px;
+        }
+
+        .menu-icon::after {
+            top: 8px;
+        }
+
+        .menu-toggle.active .menu-icon {
+            background: transparent;
+        }
+
+        .menu-toggle.active .menu-icon::before {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active .menu-icon::after {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: var(--color-surface);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            padding-top: 80px;
+            /* Space for the menu toggle button */
+            z-index: 1000;
+            color: var(--color-text);
+        }
+
+        /* Light Mode adjustment for nav list */
+        @media (prefers-color-scheme: light) {
+            .nav-list {
+                background-color: var(--color-white);
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .nav-list.open {
+            transform: translateX(0);
+        }
+
+        .nav-list li a {
+            display: block;
+            padding: var(--space-16) var(--space-24);
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: var(--font-size-lg);
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        .nav-list li a:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* Main Content Styling */
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: var(--space-48) var(--space-24);
+        }
+
+        .section {
+            margin-bottom: var(--space-64);
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: var(--space-24);
+            position: relative;
+            padding-bottom: var(--space-12);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+            border-radius: var(--radius-full);
+        }
+
+        /* Card and Experience Styling */
+        .card,
+        .experience-card,
+        .skill-category {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+            padding: var(--space-32);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-24);
+            position: relative;
+            /* Crucial for absolute positioning of the tag */
+        }
+
+        .card p {
+            line-height: 1.8;
+            margin-bottom: var(--space-16);
+            color: var(--color-text-secondary);
+        }
+
+        /* Styling for list inside the simple .card (used for Personal Details) */
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card li {
+            line-height: 2.0;
+            margin-bottom: var(--space-8);
+            position: relative;
+            /* MODIFICATION 1: Align Bullet Points */
+            padding-left: 16px; 
+            color: var(--color-text);
+        }
+
+        .card li::before {
+            content: '•';
+            /* Simple dot for personal details */
+            position: absolute;
+            /* MODIFICATION 1: Align Bullet Points */
+            left: -4px;
+            color: var(--color-primary);
+            font-size: 1.2em; /* Smaller dot for subtlety */
+            line-height: 2.0; /* Match li line-height for vertical alignment */
+            top: 0;
+            transform: none; 
+        }
+
+        /* --- Education/Work Tag Styling (MODIFIED) --- */
+        .education-tag,
+        .work-experience-tag {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background-color: #025043; /* Deep navy blue – professional and modern */
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* MODIFICATION 3: Center align the text in the tag */
+            text-align: center;
+        }
+
+        .education-tag strong {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* Optional hover effect */
+        .education-tag:hover,
+        .work-experience-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        /* --- END Tag Styling --- */
+
+        article.carousel-item {
+            position: relative;
+            padding-top: 60px;
+        }
+
+
+        /* Education Card Styling */
+        .experience-card h3 {
+            color: var(--color-primary);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-top: var(--space-24); /* Added space to clear the tag */
+            margin-bottom: var(--space-16);
+            /* Margin to prevent overlap with the education tag */
+            margin-right: 120px;
+        }
+
+        /* Work Experience Card Styling */
+        .carousel-item h4 {
+            color: var(--color-primary);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-top: var(--space-24); /* Added space to clear the tag */
+            margin-bottom: var(--space-8);
+            /* Margin to prevent overlap with the work tag */
+            margin-right: 80px;
+        }
+
+        /* Cleaned up bullet points for Education and Work Experience */
+        .experience-card li {
+            /* MODIFICATION 1: Align Bullet Points */
+            padding-left: 16px;
+            margin-bottom: var(--space-12);
+            position: relative;
+            line-height: 1.7;
+            color: var(--color-text);
+            list-style: none;
+        }
+
+        .experience-card li::before {
+            content: '•';
+            /* Clean bold dot for work/education list */
+            position: absolute;
+            /* MODIFICATION 1: Align Bullet Points */
+            left: -4px;
+            color: var(--color-primary);
+            font-size: 1.2em;
+            line-height: 1.7; /* Match li line-height for vertical alignment */
+            top: 0;
+            transform: none;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-24);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-16);
+        }
+
+        /* --- SKILL LIST STYLES (MODIFIED) --- */
+        .skill-category ul {
+            list-style: none;
+            /* Ensure no default bullets appear */
+            padding-left: 0;
+        }
+
+        .skill-category li {
+            /* MODIFICATION 2: Add padding for the custom icon */
+            padding-left: 20px;
+            margin-bottom: var(--space-8);
+            position: relative;
+            line-height: 1.6;
+            list-style: none;
+        }
+
+        /* MODIFICATION 2: Add custom icon bullet point for skills (Professional Skills default) */
+        .skill-category li::before {
+            content: '✔';
+            /* Check mark icon */
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-size: 1em;
+            line-height: 1.6;
+            /* Match line height for vertical alignment */
+            font-weight: 600;
+        }
+
+        /* NEW SNIPPET: OVERRIDE for Technical Skills to use a command prompt icon */
+        #tech-skills li::before {
+            content: '»';
+            font-size: 1.3em; 
+            font-weight: 700;
+        }
+        
+        /* --- END SKILL STYLES --- */
+
+
+        /* CTA Section & Buttons */
+        .cta-section {
+            /* Keep CTA section using primary color as background */
+            background: linear-gradient(135deg, var(--color-primary), rgba(34, 197, 94, 0.08));
+            background-blend-mode: multiply;
+            border-radius: var(--radius-lg);
+            padding: var(--space-48) var(--space-32);
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .cta-section h2 {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--color-white);
+        }
+
+        .cta-section p {
+            font-size: var(--font-size-lg);
+            color: var(--color-white);
+            margin-bottom: var(--space-32);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 32px;
+            border-radius: var(--radius-base);
+            font-weight: var(--font-weight-bold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Primary Button: Get In Touch (Prominent) */
+        .btn-primary {
+            background: var(--color-white);
+            color: var(--color-primary-hover);
+            border-color: var(--color-white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            padding-right: 42px;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-white);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ADDED: Icon/Arrow for Primary Button */
+        .btn-primary::after {
+            content: '→';
+            position: absolute;
+            right: 15px;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Secondary Button: My CV (Outline Style) */
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            margin-left: var(--space-16);
+            border: 2px solid var(--color-white);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-32) var(--space-24);
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--color-text-secondary);
+            font-size: 12px;
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: var(--space-16);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: var(--space-24);
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: var(--space-16);
+            scroll-snap-type: x mandatory;
+            /* Hide scrollbar on track */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        .carousel-item {
+            min-width: 300px;
+            max-width: 320px;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+            padding: var(--space-24);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            font-family: var(--font-family-base);
+            color: var(--color-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            /* Needed for absolute positioning of work tag */
+        }
+
+        .carousel-item .company {
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-4);
+            color: var(--color-text-secondary);
+        }
+
+        .carousel-item ul {
+            list-style: none;
+            line-height: 1.6;
+            flex-grow: 1;
+            color: var(--color-text);
+        }
+
+        .carousel-item li {
+            /* MODIFICATION 1: Align Bullet Points */
+            padding-left: 16px;
+            margin-bottom: var(--space-12);
+            position: relative;
+            line-height: 1.7;
+            /* Enhanced line height */
+            color: var(--color-text);
+        }
+
+        .carousel-item li::before {
+            content: '•';
+            /* Enhanced clean bullet point */
+            position: absolute;
+            /* MODIFICATION 1: Align Bullet Points */
+            left: -4px;
+            color: var(--color-primary);
+            font-size: 1.2em;
+            line-height: 1.7; /* Match li line-height for vertical alignment */
+            top: 0;
+            transform: none;
+        }
+
+        /* --- CAROUSEL CONTROLS & PAGINATION STYLES --- */
+        #experience-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-48);
+        }
+
+        /* Style for the navigation buttons */
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--color-surface);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .carousel-nav:hover:not(:disabled) {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        .carousel-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Style for the pagination dots */
+        #experience-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-indicator {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-text-secondary);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transitioni: background-color 0.3s, transform 0.2s;
+            opacity: 0.6;
+        }
+
+        .carousel-indicator:hover {
+            opacity: 1;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--color-primary);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        /* --- END CAROUSEL CONTROLS & PAGINATION STYLES --- */
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .header {
+                padding: var(--space-48) var(--space-16);
+            }
+
+            .container {
+                padding: var(--space-32) var(--space-16);
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: var(--space-12);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Fix for Education Tag Congestion */
+        @media (max-width: 480px) {
+            .experience-card h3 {
+                /* Reduce the right margin on the course title for small screens */
+                margin-right: 80px;
+            }
+
+            .education-tag {
+                /* Make the tag a bit smaller */
+                top: 16px;
+                right: 16px;
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            .education-tag strong {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+<div class="nav-menu">
+<button aria-label="Toggle navigation menu" class="menu-toggle" id="menuToggle">
+<span class="menu-icon"></span>
+</button>
+<ul class="nav-list" id="navList">
+<li><a href="#about">About Me</a></li>
+<li><a href="#personal-details">Personal Details</a></li>
+<li><a href="#work-experience">Work Experience</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="header-content">
+<img alt="Rohit Gerard Antony" class="profile-pic initial-load" id="profilePic" src="https://i.ibb.co/VWSdhz8P/20251106-175807-0000.png"/>
+<h1 class="initial-name-load" id="userName">Rohit Gerard Antony</h1>
+<p class="tagline">
+                Experienced <strong>Compliance and Anti-Money Laundering (AML) professional</strong> with a strong track record in
+                risk
+                mitigation, due diligence, process improvement, and team leadership at global corporations.
+            </p>
+<div class="social-links">
+<a aria-label="LinkedIn Profile" class="social-link" href="https://www.linkedin.com/in/rohit-antony-5558701b8?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app" rel="noopener noreferrer" target="_blank">
+<svg fill="currentColor" height="30" viewbox="0 0 24 24" width="30">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+</svg>
+<span>LinkedIn</span>
+</a>
+<a aria-label="Email Rohit Gerard Antony" class="social-link" href="mailto:rohitgerard1@gmail.com">
+<svg fill="currentColor" height="30" viewbox="0 0 24 24" width="30">
+<path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"></path>
+</svg>
+<span>Email</span>
+</a>
+</div>
+</div>
+</header>
+<main class="container">
+<section class="section" id="about">
+<h2 class="section-title">About Me</h2>
+<div class="card">
+<p>
+                    Experienced <strong>Compliance and Anti-Money Laundering (AML) professional</strong> with a strong background in
+                    Customer Due Diligence (CDD) and Know Your Customer (KYC).
+                </p>
+<p>
+                    Proven ability to <strong>lead analyst teams, design updated compliance policies</strong>, and <strong>mitigate risks</strong>
+                    for new and existing clients.
+                </p>
+<p>
+                    Skilled in utilizing risk screening tools, process improvement, and effective stakeholder
+                    communication, ensuring adherence to regulatory standards.
+                </p>
+</div>
+</section>
+</section>
+<section class="section" id="work-experience">
+<h2 class="section-title">Work Experience</h2>
+<div class="carousel-container">
+<div class="carousel-track" id="carouselTrack" tabindex="0">
+<article class="carousel-item">
+<div class="work-experience-tag">June 2022 - Present</div>
+<h4>Research Analyst - Compliance</h4>
+<div class="company">Diligent Corporation, Bengaluru</div>
+<ul>
+<li>Performed comprehensive Customer Due Diligence (CDD) and Know Your Customer (KYC) checks
+                                to identify and mitigate risks for both new and existing clients.</li>
+<li>Led a team of KYC analysts, offering training, support, and oversight to ensure
+                                consistency and accuracy in KYC processes.</li>
+<li>Managed Enhanced Due Diligence (EDD) for high-risk clients, including Politically
+                                Exposed Persons (PEPs).</li>
+<li>Utilized risk screening tools to monitor sanctions lists, adverse media, and PEP alerts.
+                            </li>
+</ul>
+</article>
+<article class="carousel-item">
+<div class="work-experience-tag">January 2021 - June 2022</div>
+<h4>Sr. Associate - Compliance</h4>
+<div class="company">Amazon, Bengaluru</div>
+<ul>
+<li>Reported rule violations and recommended corrective procedures.</li>
+<li>Ensured transactions align with global marketplace guidelines.</li>
+<li>Maintained trade policy adherence. Cross-trained in Manual &amp; Bulk Classification.</li>
+<li>Proposed process improvements for efficiency and quality.</li>
+</ul>
+</article>
+<article class="carousel-item">
+<div class="work-experience-tag">Sep 2018 - Jan 2021</div>
+<h4>Subject Matter Expert (Google Process)</h4>
+<div class="company">Concentrix, Bengaluru</div>
+<ul>
+<li>Managed a 25-member content review and moderation team.</li>
+<li>Assisted global app developers in safety checks and policy compliance.</li>
+<li>Conducted KYC and due diligence checks for developers and app data, screening for fraud
+                                and potential scams.</li>
+<li>Led client interactions, managed operations, and coached pilot teams.</li>
+</ul>
+</article>
+</div>
+</div>
+<div id="experience-controls">
+<button aria-label="Previous Work Experience" class="carousel-nav" id="prevBtn">
+                    ‹
+                </button>
+<div id="experience-indicators">
+</div>
+<button aria-label="Next Work Experience" class="carousel-nav" id="nextBtn">
+                    ›
+                </button>
+</div>
+</section>
+<section class="section" id="education">
+<h2 class="section-title">Education</h2>
+<article class="experience-card">
+<div class="education-tag">
+                    2018-2020<br/><strong>HR Specialization</strong>
+</div>
+<h3>Masters of Business Administration (MBA)</h3>
+<div class="company">Acharya Institute of Management and Science (AIMS)</div>
+</article>
+<article class="experience-card">
+<div class="education-tag">
+                    2015-2018<br/><strong>Finance/Marketing</strong>
+</div>
+<h3>Bachelor's degree of Business Administration (BBA)</h3>
+<div class="company">CMR Institute of Management Studies</div>
+</article>
+</section>
+<section class="section" id="skills">
+<h2 class="section-title">Skills</h2>
+<div class="skills-grid">
+<div class="skill-category" id="soft-skills">
+<h3>Professional Skills</h3>
+<ul>
+<li>Track record in implementing &amp; executing support processes</li>
+<li>Creative problem-solving &amp; identifying root causes</li>
+<li>Strong teamwork &amp; individual performance</li>
+<li>Thrives in fast-paced environments</li>
+<li>Adaptable with changing priorities</li>
+<li>Effective time management &amp; prioritization</li>
+<li>Strong written &amp; verbal communication</li>
+<li>Process improvement oriented</li>
+<li>Exceptional interpersonal communication</li>
+</ul>
+</div>
+<div class="skill-category" id="tech-skills">
+<h3>Technical Skills &amp; Certifications</h3>
+<ul>
+<li>Anti-Money Laundering (AML) &amp; KYC</li>
+<li>Customer Due Diligence (CDD) &amp; Enhanced Due Diligence (EDD)</li>
+<li>Compliance Certified &amp; Management</li>
+<li>Client Management</li>
+<li>SQL (Basics)</li>
+<li>MS Office, Excel, PowerPoint &amp; Data presentation</li>
+<li>Customs Trade policy &amp; HS classification</li>
+</ul>
+</div>
+</div>
+</section>
+    
+</section>
+<section class="section" id="personal-details">
+<h2 class="section-title">Personal Details</h2>
+<div class="card">
+<ul>
+<li><strong>Date of Birth:</strong> 1st February 1995</li>
+<li><strong>Marital Status:</strong> Unmarried</li>
+<li><strong>Nationality:</strong> Indian</li>
+<li><strong>Languages Known:</strong> English, Hindi, Kannada, Tamil</li>
+</ul>
+</div>
+</section>
+   
+<section class="cta-section" id="contact">
+<h2>Let's Work Together</h2>
+<p>I'm always open to discussing new opportunities and bringing value to Compliance and Risk teams.</p>
+<div>
+<a class="btn btn-primary" href="mailto:rohitgerard1@gmail.com?subject=Let's Connect">Get In Touch</a>
+<a class="btn btn-secondary" href="https://drive.google.com/file/d/18XquU1GW71gxSLk0qLmSNSa3blh-vXdl/view?usp=drivesdk">View CV</a>
+</div>
+</section>
+</main>
+<footer class="footer">
+<p>© 2025 Rohit Gerard Antony. All rights reserved.</p>
+</footer>
+<script>
+        // Smooth Scrolling and Menu Close Logic
+        document.querySelectorAll('.nav-list a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Close menu when a link is clicked
+                const navList = document.getElementById('navList');
+                const menuToggle = document.getElementById('menuToggle');
+                if (navList.classList.contains('open')) {
+                    navList.classList.remove('open');
+                    menuToggle.classList.remove('active');
+                }
+
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+        // Hamburger Menu Toggle Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const navList = document.getElementById('navList');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('open');
+            menuToggle.classList.toggle('active');
+        });
+
+        // --- CAROUSEL PAGINATION LOGIC ---
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const track = document.getElementById('carouselTrack');
+        const indicatorsContainer = document.getElementById('experience-indicators');
+
+        if (track) {
+            const items = Array.from(track.children);
+            // Base width of a single carousel item + its gap (320px item + 24px gap)
+            const itemScrollDistance = 344;
+            const totalItems = items.length;
+            const lastScrollPosition = itemScrollDistance * (totalItems - 1);
+
+            // Function to update the active indicator and button state
+            function updateCarousel(scrollLeft) {
+                // Determine the index of the current item in view
+                // Using a tolerance (+ itemScrollDistance / 2) to snap to the correct index
+                const currentItemIndex = Math.round(scrollLeft / itemScrollDistance);
+
+                // Update active class on indicators
+                Array.from(indicatorsContainer.children).forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentItemIndex);
+                });
+
+                // Update button disabled state
+                prevBtn.disabled = currentItemIndex === 0;
+                nextBtn.disabled = currentItemIndex === totalItems - 1;
+            }
+
+            // Function to initialize the indicators
+            function initCarousel() {
+                items.forEach((item, index) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('carousel-indicator');
+                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+
+                    dot.addEventListener('click', () => {
+                        track.scrollTo({
+                            left: index * itemScrollDistance,
+                            behavior: 'smooth'
+                        });
+                    });
+                    indicatorsContainer.appendChild(dot);
+                });
+
+                // Set initial state
+                updateCarousel(track.scrollLeft);
+            }
+
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({
+                    left: -itemScrollDistance,
+                    behavior: 'smooth'
+                });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({
+                    left: itemScrollDistance,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Event listener for scroll to update indicators
+            track.addEventListener('scroll', () => {
+                // Wait for a moment after scrolling stops to update the indicator
+                clearTimeout(track.scrollTimeout);
+                track.scrollTimeout = setTimeout(() => {
+                    updateCarousel(track.scrollLeft);
+                }, 50); // Delay to ensure final scroll position is read
+            });
+
+            // Ensure carousel initializes on load
+            window.addEventListener('load', () => {
+                initCarousel();
+            });
+        }
+        // --- END CAROUSEL PAGINATION LOGIC ---
+
+
+        // One-time Animation Logic for Picture and Name
+        const profilePic = document.getElementById('profilePic');
+        const userName = document.getElementById('userName');
+
+        // Use window.load to ensure the image is loaded (for better timing)
+        window.addEventListener('load', () => {
+            // 1. Profile Picture Animation (Pop-in)
+            if (profilePic) {
+                profilePic.classList.remove('initial-load');
+                profilePic.classList.add('animate');
+            }
+
+            // 2. Name Animation (Descend) - Trigger with a slight delay
+            if (userName) {
+                // Delay the name animation by 300ms to create a layered effect
+                setTimeout(() => {
+                    userName.classList.remove('initial-name-load');
+                    userName.classList.add('animate-name');
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>
